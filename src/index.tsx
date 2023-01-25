@@ -1,13 +1,26 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { Provider, useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk'
+import { AnyAction } from 'redux'
+
+import { configureStore, IApplicationState } from 'setup/store'
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Api from './services/api'
 import './index.css';
+
+const api = new Api('')
+
+const { store, persistor } = configureStore({ api })
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
+
+export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>
+
+// export const useAppDispatch = () => useDispatch<ThunkDispatch<IApplicationState, any, AnyAction>>()
 
 root.render(
   <React.StrictMode>
@@ -16,8 +29,3 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
