@@ -1,18 +1,19 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider, useDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk'
-import { AnyAction } from 'redux'
+import { Provider } from 'react-redux';
 
-import { configureStore, IApplicationState } from 'setup/store'
+import { configureStore } from 'setup/store'
 
 import App from './App';
 import Api from './services/api'
+
 import './index.css';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const api = new Api('')
 
-const { store, persistor } = configureStore({ api })
+const { store } = configureStore({ api })
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
