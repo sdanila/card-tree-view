@@ -1,0 +1,24 @@
+@import 'shared/style/var.scss';
+
+.header-block {
+  color: #fff;
+  height: $header-height;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.8rem;
+  width: 100%;
+  background-color: #6342b4;
+  // overflow-y: auto;
+
+  &__switch-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.structure-icon {
+  fill: white;
+  height: 10px;
+}

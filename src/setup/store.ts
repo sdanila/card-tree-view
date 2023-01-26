@@ -14,7 +14,7 @@ declare global {
 }
 
 export interface IApplicationState {
-  card: CardFeature.types.ICardState
+  card: CardFeature.types.ICardStatePersisted
 }
 
 type ConfigureStore = {
@@ -34,7 +34,13 @@ export function configureStore(extra: IExtra): ConfigureStore {
     card: CardFeature.reducer
   })
 
-  const store = createStore(reducer, compose(applyMiddleware(middleware), composeEnhancers))
+  const store = createStore(
+    reducer,
+    compose(
+      applyMiddleware(middleware),
+      // composeEnhancers
+    )
+  )
 
   const persistor = persistStore(store)
 

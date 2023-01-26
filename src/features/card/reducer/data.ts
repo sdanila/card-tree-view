@@ -8,7 +8,7 @@ const initialState: ICardState['data'] = {
 
 export default createReducer(initialState, builder => {
   builder
-    .addCase(actions.getImages.success, (state, action) => {
+    .addCase(actions.addImages, (state, action) => {
       state.images = action.payload
     })
 

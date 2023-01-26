@@ -6,12 +6,12 @@ class ImageApi extends BaseHttpService {
 
   constructor(baseUrl: string) {
     super(baseUrl)
-    this.baseUrl = `${baseUrl}/frontend_data`
+    this.baseUrl = `${baseUrl}`
   }
 
   async getImage() {
     return this.sendQuery({
-      url: `${this.baseUrl}/catalog.json/`,
+      url: `http://contest.elecard.ru/frontend_data/catalog.json/`,
       type: QueryTypes.GET,
     })
   }

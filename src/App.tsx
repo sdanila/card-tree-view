@@ -1,57 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import block from 'bem-cn'
+
+import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { selectCardImages } from 'features/card/selectors';
+import { getImages } from 'features/card/actions';
+
+import { Header } from 'components/Header/Header';
+import { Footer } from 'components/Footer/Footer';
+
 import './App.scss';
 
-// import { useAppSelector } from './app/hooks';
-// import { IApplicationState } from './setup/store';
+export enum IVisiblyType {
+  TREE = 'tree',
+  CARD = 'card'
+}
+
+const b = block('app')
 
 function App() {
+  const dispatch = useAppDispatch()
+  const images = useAppSelector(selectCardImages)
+
+  const [visiblyType, setVisiblyType] = useState<IVisiblyType>(IVisiblyType.CARD)
+
+  useEffect(() => {
+    if (!images.length) {
+      dispatch(getImages())
+    }
+  }, [visiblyType])
+
+  const onVisiblyTypeHandler = React.useCallback(
+    (type: boolean) => {
+      if (type) {
+        setVisiblyType(IVisiblyType.CARD)
+      } else {
+        setVisiblyType(IVisiblyType.TREE)
+      }
+    }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className={b('container')}>
+      <Header onVisiblyTypeHandler={onVisiblyTypeHandler} />
+      <div className={b('main')} />
+      <Footer />
     </div>
   );
 }

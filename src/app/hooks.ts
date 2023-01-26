@@ -1,4 +1,4 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { TypedUseSelectorHook, useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk'
 import { AnyAction } from 'redux'
 
