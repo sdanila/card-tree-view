@@ -8,6 +8,8 @@ import { getImages } from 'features/card/actions';
 import { Spinner } from 'components/Spinner/Spinner';
 import { Header } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
+import Cards from 'pages/Cards/Cards';
+import Tree from './pages/Tree/Tree';
 
 import './App.scss';
 
@@ -44,11 +46,11 @@ function App() {
     () => {
       switch (visiblyType) {
         case IVisiblyType.CARD:
-          return ''
+          return <Cards />
         case IVisiblyType.TREE:
-          return ''
+          return <Tree />
         default:
-          return ''
+          return <Cards />
       }
     }, [visiblyType])
 

@@ -1,0 +1,31 @@
+.card-component {
+  position: relative;
+  width: 240px;
+  height: 200px !important;
+  overflow: hidden;
+  margin-bottom: 10px;
+
+  &__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -71%);
+    height: 140px;
+    object-fit: cover;
+  }
+
+  &__body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 1.3;
+    padding: 8px 16px !important;
+  }
+
+  &__title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+  }
+}
