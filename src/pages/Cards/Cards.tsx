@@ -1,24 +1,26 @@
 import React, { useMemo, useState } from 'react'
 import block from 'bem-cn'
+import Pagination from 'rc-pagination'
 
 import { useAppSelector, useAppDispatch } from 'app/hooks'
 import { selectCardImages } from 'features/card/selectors'
 
-import useFilterCards from 'shared/hooks/useFilterCards';
+import useFilterCards, { sortParameters } from 'shared/hooks/useFilterCards';
 
 import Card from './Card/Card'
+import SortCards from './SortCards/SortCards';
 
 import './Cards.scss'
 
 interface IFilters {
-  sortByParameter?: 'category' | 'timestamp' | 'image' | 'filesize'
+  sortByParameter?: sortParameters
   sortType: 'asc' | 'desc'
   pageSize: number
   page: number
 }
 
-const defaultFilters = {
-  sortByParameter: undefined,
+const defaultFilters: { sortByParameter: sortParameters, sortType: 'asc' } = {
+  sortByParameter: sortParameters.NAME,
   sortType: 'asc'
 }
 
@@ -29,9 +31,9 @@ function Cards() {
   const images = useAppSelector(selectCardImages);
 
   const [filters, setFilters] = useState<IFilters>({
-    sortByParameter: undefined,
+    sortByParameter: sortParameters.NAME,
     sortType: 'asc',
-    pageSize: 10,
+    pageSize: 12,
     page: 1
   })
 
@@ -47,11 +49,41 @@ function Cards() {
         />)
     , [paginatedList])
 
+  const sortItems = useMemo(() => Object.keys(images[0]) as sortParameters[], [images])
+
+  const onSortChange = React.useCallback((type?: sortParameters) => {
+    setFilters(prev => ({ ...prev, sortByParameter: type }))
+  }, [])
+
+  const onChangePage = React.useCallback((page: number, pageSize: number) => {
+    setFilters(prev => ({ ...prev, page, pageSize }))
+  }, [])
+
+  const onResetFilters = React.useCallback(() => {
+    setFilters(prev => ({ ...prev, ...defaultFilters }))
+  }, [])
+
   return (
     <div className={b()}>
-      <div className={b('top')} />
+      <div className={b('top')}>
+        <SortCards
+          sortItems={sortItems}
+          onChange={onSortChange}
+          onReset={onResetFilters}
+          active={filters.sortByParameter}
+        />
+      </div>
       <div className={b('wrapper')}>
         {items}
+      </div>
+      <div className={b("pagination-bottom")}>
+        <Pagination
+          current={filters.page}
+          total={cardsCount}
+          pageSize={filters.pageSize}
+          onChange={onChangePage}
+          showLessItems
+        />
       </div>
     </div>
   )

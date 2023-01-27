@@ -28,10 +28,10 @@ function App() {
   const [visiblyType, setVisiblyType] = useState<IVisiblyType>(IVisiblyType.CARD)
 
   useEffect(() => {
-    if (!images.length || visiblyType === IVisiblyType.TREE) {
+    if (!images.length) {
       dispatch(getImages())
     }
-  }, [visiblyType])
+  }, [])
 
   const onVisiblyTypeHandler = React.useCallback(
     (type: boolean) => {

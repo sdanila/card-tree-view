@@ -1,0 +1,23 @@
+.sort-cards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__item {
+    margin-left: 5px;
+  }
+
+  &__choice {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .btn-primary {
+    --bs-btn-bg: #6342b4 !important;
+    --bs-btn-border-color: #6342b4 !important;
+    --bs-btn-active-bg: #fff !important;
+    --bs-btn-active-border-color: #6342b4 !important;
+    --bs-btn-active-color: #6342b4 !important;
+  }
+}
