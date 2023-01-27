@@ -7,11 +7,10 @@ import './Spinner.scss'
 
 interface ISpinnerProps {
   isLoading: boolean
-  text?: string
   size?: string
 }
 
-export function Spinner({ isLoading, text, size = 'small' }: ISpinnerProps) {
+export function Spinner({ isLoading, size = 'small' }: ISpinnerProps) {
   const b = block('spinner')
 
   return (
@@ -27,7 +26,6 @@ export function Spinner({ isLoading, text, size = 'small' }: ISpinnerProps) {
           <SpinnerBootstrap animation="border" />
         </motion.div>
       ) : null}
-      ;
     </AnimatePresence>
   )
 }
