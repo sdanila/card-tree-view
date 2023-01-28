@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useMemo, useCallback, useEffect } from 'react'
 import CardBootstrap from 'react-bootstrap/Card';
 import block from 'bem-cn'
 import Button from 'components/Button/Button';
@@ -18,15 +18,37 @@ const url = 'http://contest.elecard.ru/frontend_data'
 const b = block('card-component')
 
 export default function Card({ card, onHideClick }: ICardProps) {
+  // eslint-disable-next-line no-undef
+  const currentTimeoutId = useRef<NodeJS.Timeout>()
+
+  const [isClosing, setIsClosing] = useState<boolean>(false)
+
   const titleSplit = splitString(card.image)
   const title = firstLetterToUpperCase(titleSplit)
 
-  const onHideClickHandler = React.useCallback(() => {
-    onHideClick(card)
-  }, [card, onHideClick])
+  const getTimeoutedFunc = useMemo(
+    () => () => {
+      currentTimeoutId.current = setTimeout(() => {
+        onHideClick(card)
+        setIsClosing(false)
+      }, 400)
+    },
+    [card, onHideClick],
+  );
+
+  const onHideClickHandler = useCallback(() => {
+    setIsClosing(true)
+    getTimeoutedFunc()
+  }, [getTimeoutedFunc])
+
+  useEffect(() => () => {
+    if (currentTimeoutId.current) {
+      clearTimeout(currentTimeoutId.current)
+    }
+  }, [])
 
   return (
-    <CardBootstrap className={b()}>
+    <CardBootstrap className={b({ isClosing }).toString()}>
       <CardBootstrap.Img
         variant="top"
         className={b('img').toString()}
@@ -36,7 +58,7 @@ export default function Card({ card, onHideClick }: ICardProps) {
         <CardBootstrap.Title className={b('title').toString()}>
           {title}
         </CardBootstrap.Title>
-        <Button text='Hide' onClick={onHideClickHandler} variant='secondary' size='sm' />
+        <Button text='Hide' disabled={isClosing} onClick={onHideClickHandler} variant='secondary' size='sm' />
       </CardBootstrap.Body>
     </CardBootstrap>
   )

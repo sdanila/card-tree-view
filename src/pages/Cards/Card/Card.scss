@@ -4,6 +4,7 @@
   height: 200px !important;
   overflow: hidden;
   margin-bottom: 10px;
+  z-index: 100;
 
   &__img {
     position: absolute;
@@ -32,5 +33,35 @@
     width: 100%;
     white-space: nowrap;
     margin-bottom: 0 !important;
+  }
+
+  &_isClosing {
+    animation: closingCard .4s;
+  }
+}
+
+@keyframes closingCard {
+  0% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: .75;
+  }
+
+  50% {
+    opacity: .5;
+  }
+
+  75% {
+    opacity: .25;
+    transform: translateY(40px);
+    z-index: 101;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(40px);
+    z-index: 101;
   }
 }
