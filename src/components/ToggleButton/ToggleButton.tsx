@@ -31,18 +31,25 @@ function ToggleButton({ disabled, onChange, icons }: IToggleButtonProps): ReactE
   }
 
   return (
-    <div onClick={triggerToggle} className={b({ checked: toggle, disabled })}>
-      <div className={b("container")}>
-        <div className={b("check")}>
-          <span>{getIcon(IVisiblyType.CARD)}</span>
+    <>
+      <div onClick={triggerToggle} className={b({ checked: toggle, disabled })}>
+        <div className={b("container")}>
+          <div className={b("check")}>
+            <span>{getIcon(IVisiblyType.CARD)}</span>
+          </div>
+          <div className={b("uncheck")}>
+            <span>{getIcon(IVisiblyType.TREE)}</span>
+          </div>
         </div>
-        <div className={b("uncheck")}>
-          <span>{getIcon(IVisiblyType.TREE)}</span>
-        </div>
+        <div className={b("circle")} />
+        <input type="checkbox" className={b("input")} />
       </div>
-      <div className={b("circle")} />
-      <input type="checkbox" className={b("input")} />
-    </div>
+      <span
+        className={b('switch')}
+        onClick={triggerToggle}>
+        {`Switch to ${toggle ? 'tree-structure' : 'card-structure'}`}
+      </span>
+    </>
   );
 }
 

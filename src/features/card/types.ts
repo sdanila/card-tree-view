@@ -9,7 +9,7 @@ export interface ICardState {
   }
   data: {
     images: IImage[] | []
-    hiddenCards: IImage[]
+    hiddenCards: string[]
   }
 }
 

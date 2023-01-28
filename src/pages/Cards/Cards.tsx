@@ -1,9 +1,12 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useCallback } from 'react'
 import block from 'bem-cn'
 import Pagination from 'rc-pagination'
 
 import { useAppSelector, useAppDispatch } from 'app/hooks'
 import { selectCardImages } from 'features/card/selectors'
+import { hideCard } from 'features/card/actions'
+
+import { IImage } from 'shared/models/Images'
 
 import useFilterCards, { sortParameters } from 'shared/hooks/useFilterCards';
 
@@ -39,13 +42,18 @@ function Cards() {
 
   const { cardsCount, paginatedList } = useFilterCards({ filters, images })
 
+  const onHideCard = useCallback(
+    (cardItem: IImage) => {
+      dispatch(hideCard(cardItem))
+    }, [])
+
   const items = useMemo(
     () =>
       paginatedList.map(item =>
         <Card
           key={`${item.filesize}_${item.timestamp}`}
-          image={item.image}
-          category={item.category}
+          card={item}
+          onHideClick={onHideCard}
         />)
     , [paginatedList])
 

@@ -8,13 +8,6 @@ export function Footer() {
 
   return (
     <footer className={b()}>
-      <div className={b('wrapper')}>
-        <div className={b('divider')} />
-      </div>
-      <div className={b('wrapper')}>
-        <div className={b('divider')} />
-      </div>
-
       <div className={b('wrapper')} />
     </footer>
   )

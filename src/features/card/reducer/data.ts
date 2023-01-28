@@ -12,5 +12,12 @@ export default createReducer(initialState, builder => {
     .addCase(actions.addImages, (state, action) => {
       state.images = action.payload
     })
+    .addCase(actions.hideCard, (state, action) => {
+      const card = { ...action.payload }
+
+      const cardId = `${card.image}_${card.timestamp}`
+
+      state.hiddenCards = [...state.hiddenCards, cardId]
+    })
 
 })

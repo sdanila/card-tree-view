@@ -5,8 +5,10 @@ import {
 import dayjs from 'dayjs'
 import { IImage } from 'shared/models/Images'
 
-export const ADD_IMAGES = '@basket/ADD_BET'
+export const ADD_IMAGES = '@card/ADD_BET'
+export const HIDE_CARD = '@card/HIDE_CARD'
 
+export const hideCard = createAction<IImage>(HIDE_CARD)
 export const addImages = createAction<IImage[]>(ADD_IMAGES)
 
 export const getImages = makeCommunicationActionCreator({

@@ -35,7 +35,8 @@ const useFilterCards = ({ filters, images }: IUseFilterCardProps) => {
     if (!hiddenCards.length) {
       return images
     }
-    return images.filter(item => !hiddenCards.includes(item))
+
+    return images.filter(item => !hiddenCards.includes(`${item.image}_${item.timestamp}`))
   }, [hiddenCards, images])
 
   const cardsBySort = useMemo(() => {
