@@ -1,7 +1,9 @@
 import React, { useState, useRef, useMemo, useCallback, useEffect } from 'react'
 import CardBootstrap from 'react-bootstrap/Card';
 import block from 'bem-cn'
+
 import Button from 'components/Button/Button';
+import LoadableImage from 'components/LoadableImage/LoadableImage';
 
 import { splitString, firstLetterToUpperCase } from 'shared/utils/funcTools';
 import { IImage } from 'shared/models/Images';
@@ -49,11 +51,13 @@ export default function Card({ card, onHideClick }: ICardProps) {
 
   return (
     <CardBootstrap className={b({ isClosing }).toString()}>
-      <CardBootstrap.Img
-        variant="top"
-        className={b('img').toString()}
-        src={`${url}/${card.image}`}
-      />
+      <div className={b('img')}>
+        <LoadableImage
+          src={`${url}/${card.image}`}
+          alt={title}
+          animationType="smallToBig"
+        />
+      </div>
       <CardBootstrap.Body className={b('body').toString()}>
         <CardBootstrap.Title className={b('title').toString()}>
           {title}

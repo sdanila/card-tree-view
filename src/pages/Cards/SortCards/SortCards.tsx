@@ -10,7 +10,6 @@ import './SortCards.scss'
 interface ISortCardsProps {
   sortItems: sortParameters[]
   onChange: (choice?: sortParameters) => void
-  onReset: () => void
   active?: sortParameters
 }
 
@@ -23,7 +22,7 @@ const locale = {
 
 const b = block('sort-cards')
 
-function SortCards({ sortItems, onChange, onReset, active }: ISortCardsProps) {
+function SortCards({ sortItems, onChange, active }: ISortCardsProps) {
 
   const onClickHandler = React.useCallback((item: sortParameters) => onChange(item), [onChange])
 
@@ -33,7 +32,6 @@ function SortCards({ sortItems, onChange, onReset, active }: ISortCardsProps) {
         key={`${item}_${index}`}
         id={`${item}_${index}`}
         value={item}
-        // className={b('item')}
         onClick={() => onClickHandler(item)}>
         {locale[item]}
       </ToggleButton>

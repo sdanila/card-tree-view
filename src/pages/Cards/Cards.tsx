@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from 'react'
+import React, { useMemo, useState, useCallback, useEffect } from 'react'
 import block from 'bem-cn'
 import Pagination from 'rc-pagination'
 
@@ -20,11 +20,6 @@ interface IFilters {
   sortType: 'asc' | 'desc'
   pageSize: number
   page: number
-}
-
-const defaultFilters: { sortByParameter: sortParameters, sortType: 'asc' } = {
-  sortByParameter: sortParameters.NAME,
-  sortType: 'asc'
 }
 
 const b = block('cards')
@@ -67,9 +62,12 @@ function Cards() {
     setFilters(prev => ({ ...prev, page, pageSize }))
   }, [])
 
-  const onResetFilters = React.useCallback(() => {
-    setFilters(prev => ({ ...prev, ...defaultFilters }))
-  }, [])
+  useEffect(() => {
+    const { page, pageSize } = filters
+    const needChangeLastPage = (+page !== 1) && (page > Math.ceil(cardsCount / pageSize))
+
+    if (needChangeLastPage) onChangePage(page - 1, pageSize)
+  }, [cardsCount])
 
   return (
     <div className={b()}>
@@ -77,7 +75,6 @@ function Cards() {
         <SortCards
           sortItems={sortItems}
           onChange={onSortChange}
-          onReset={onResetFilters}
           active={filters.sortByParameter}
         />
       </div>
