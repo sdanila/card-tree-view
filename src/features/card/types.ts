@@ -6,6 +6,7 @@ import { IImage } from 'shared/models/Images'
 export interface ICardState {
   communications: {
     getImages: ICommunication
+    resetCards: ICommunication
   }
   data: {
     images: IImage[] | []

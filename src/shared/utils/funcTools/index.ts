@@ -1,4 +1,4 @@
-type ISortByParameters = {
+type ISort = {
   a: string | number
   b: string | number
 }
@@ -10,7 +10,7 @@ export const firstLetterToUpperCase = (word: string) =>
   word.split('').map(((letter, index) => index === 0 ? letter.toUpperCase() : letter)).join('')
 
 
-export const sortStringOrNumber = ({ a, b }: ISortByParameters) => {
+export const sortStringOrNumber = ({ a, b }: ISort) => {
   let result = 0
 
   switch (`${typeof a} ${typeof b}`) {
@@ -37,7 +37,6 @@ export const sortStringOrNumber = ({ a, b }: ISortByParameters) => {
     }
 
     default:
-
       return result
   }
 }

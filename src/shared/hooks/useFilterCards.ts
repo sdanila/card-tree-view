@@ -44,7 +44,7 @@ const useFilterCards = ({ filters, images }: IUseFilterCardProps) => {
       return cardsWithoutHidden
     }
 
-    return cardsWithoutHidden.sort(
+    return [...cardsWithoutHidden].sort(
       (a, b) =>
         sortStringOrNumber(
           {

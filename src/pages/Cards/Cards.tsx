@@ -57,7 +57,7 @@ function Cards() {
         />)
     , [paginatedList])
 
-  const sortItems = useMemo(() => Object.keys(images[0]) as sortParameters[], [images])
+  const sortItems = useMemo(() => images.length ? Object.keys(images[0]) as sortParameters[] : [], [images])
 
   const onSortChange = React.useCallback((type?: sortParameters) => {
     setFilters(prev => ({ ...prev, sortByParameter: type }))
