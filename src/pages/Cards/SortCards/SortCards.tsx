@@ -4,6 +4,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
 import { sortParameters } from 'shared/hooks/useFilterCards'
+import { locale } from 'shared/utils/locale';
 
 import './SortCards.scss'
 
@@ -11,13 +12,6 @@ interface ISortCardsProps {
   sortItems: sortParameters[]
   onChange: (choice?: sortParameters) => void
   active?: sortParameters
-}
-
-const locale = {
-  image: 'Name',
-  filesize: 'File size',
-  timestamp: 'Date',
-  category: 'Category'
 }
 
 const b = block('sort-cards')

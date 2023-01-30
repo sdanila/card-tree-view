@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;700;800&display=swap');
+
 #root .rc-pagination {
   display: flex;
   flex-wrap: wrap;
@@ -55,24 +58,30 @@
   }
 }
 
-// .btn-primary {
-//   --bs-btn-bg: #6342b4 !important;
-//   --bs-btn-border-color: #6342b4 !important;
-//   --bs-btn-active-bg: #fff !important;
-//   --bs-btn-active-border-color: #6342b4 !important;
-//   --bs-btn-active-color: #6342b4 !important;
-// }
-
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Baloo 2', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: overlay;
+  line-height: 1.42857143;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  border-width: 0;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: not-allowed;
 }

@@ -10,7 +10,6 @@ import Api from './services/api'
 import './index.scss';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'rsuite/dist/rsuite.min.css';
 
 const api = new Api('')
 

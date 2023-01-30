@@ -7,6 +7,7 @@ import LoadableImage from 'components/LoadableImage/LoadableImage';
 
 import { splitString, firstLetterToUpperCase } from 'shared/utils/funcTools';
 import { IImage } from 'shared/models/Images';
+import { urlData } from 'shared/utils/constants';
 
 import './Card.scss';
 
@@ -14,8 +15,6 @@ interface ICardProps {
   card: IImage
   onHideClick: (card: IImage) => void
 }
-
-const url = 'http://contest.elecard.ru/frontend_data'
 
 const b = block('card-component')
 
@@ -53,7 +52,7 @@ export default function Card({ card, onHideClick }: ICardProps) {
     <CardBootstrap className={b({ isClosing }).toString()}>
       <div className={b('img')}>
         <LoadableImage
-          src={`${url}/${card.image}`}
+          src={`${urlData}/${card.image}`}
           alt={title}
           animationType="smallToBig"
         />
