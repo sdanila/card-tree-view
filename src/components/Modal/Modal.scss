@@ -1,0 +1,66 @@
+@import '~shared/style/var.scss';
+
+.modal-component {
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(40, 17, 86, 0.9);
+  z-index: 1000;
+  top: 0;
+  transform: translate(-50%);
+
+  &__app-container {
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    z-index: 15;
+    padding: 2.4rem 0.8rem 14rem;
+    width: 100vw;
+    transform: translateZ(0);
+    // @include min-width-pre-full-hd-desktop {
+    //   padding: 2rem 0 0;
+    // }
+  }
+
+  &__wrapper {
+    position: fixed;
+    background-color: rgba(40, 17, 86, 0.9);
+    -webkit-tap-highlight-color: transparent;
+    overflow-y: auto;
+    height: 100vh;
+  }
+
+  &__content-container {
+    border-radius: 16px;
+    overflow: hidden;
+    // display: flex;
+    position: relative;
+  }
+
+  &__close-block,
+  &__save-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: #3f4451;
+    color: #fff;
+    z-index: 10000;
+    cursor: pointer;
+  }
+
+  &__close-img {
+    width: 60%;
+    height: 60%;
+  }
+
+  &__save-block {
+    width: 90px;
+    height: 25px;
+  }
+}

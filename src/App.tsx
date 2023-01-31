@@ -8,8 +8,11 @@ import { getImages } from 'features/card/actions';
 import { Spinner } from 'components/Spinner/Spinner';
 import { Header } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
+import ModalManager from 'components/ModalManager/ModalManager';
+import { ModalContext, ModalQueryContext } from 'components/HOC/withModalQuery/ModalContext'
+import withModalQuery from 'components/HOC/withModalQuery/withModalQuery';
 import Cards from 'pages/Cards/Cards';
-import Tree from './pages/Tree/Tree';
+import Tree from 'pages/Tree/Tree';
 
 import './App.scss';
 
@@ -18,9 +21,13 @@ export enum IVisiblyType {
   CARD = 'card'
 }
 
+interface IAppProps {
+  modalFilters: ModalQueryContext
+}
+
 const b = block('app')
 
-function App() {
+function App({ modalFilters }: IAppProps) {
   const dispatch = useAppDispatch()
   const images = useAppSelector(selectCardImages)
   const { isLoading } = useAppSelector(selectCardComm).getImages
@@ -55,18 +62,21 @@ function App() {
     }, [visiblyType])
 
   return (
-    <div className={b('container')}>
-      <Header onVisiblyTypeHandler={onVisiblyTypeHandler} />
-      <div className={b('main')}>
-        {
-          isLoading
-            ? <Spinner isLoading />
-            : component
-        }
+    <ModalContext.Provider value={modalFilters}>
+      <div className={b('container')}>
+        <ModalManager />
+        <Header onVisiblyTypeHandler={onVisiblyTypeHandler} />
+        <div className={b('main')}>
+          {
+            isLoading
+              ? <Spinner isLoading />
+              : component
+          }
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </ModalContext.Provider>
   );
 }
 
-export default App;
+export default withModalQuery(App);

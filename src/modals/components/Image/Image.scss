@@ -1,0 +1,47 @@
+@import 'shared/style/var.scss';
+
+.image-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 25rem;
+  padding: 2.1875rem;
+  box-sizing: border-box;
+  border-radius: 1.25rem;
+  max-width: 45vw;
+
+  // @include max-width-tablet {
+  //   max-width: 65vw;
+  // }
+
+  // @include max-width-mobile {
+  //   max-width: 90vw;
+  //   padding-bottom: 9rem;
+  // }
+
+  &__content {
+    // width: 10rem;
+  }
+
+  &__button-wrapper {
+    position: absolute;
+    display: flex;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35%;
+    justify-content: space-between;
+
+    // @include max-width-tablet {
+    //   width: 100%;
+    //   justify-content: space-evenly;
+    // }
+  }
+
+  &__text {
+    font-size: 1.65rem;
+    width: 80%;
+    margin-top: 1rem;
+  }
+}

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import block from 'bem-cn';
 
 import { ITreeStructure } from 'shared/models/Images';
 import { urlData } from 'shared/utils/constants';
+import { ModalContext } from 'components/HOC/withModalQuery/ModalContext';
 
 import './TreeComponent.scss';
 
@@ -15,10 +16,17 @@ const b = block('tree-component')
 
 export default function TreeComponent({ node, depth = 0 }: ITreeNode) {
   const [toggled, setToggled] = useState<boolean>(false);
+  const { pushNewModal } = useContext(ModalContext)
 
   const onToggleHandler = () => {
     setToggled(prev => !prev)
   }
+
+  const onImageClick = useCallback(() => {
+    if (node.image) {
+      pushNewModal(node.image)
+    }
+  }, [node, pushNewModal])
 
   const listItem = () => {
     switch (node.isCard) {
@@ -31,6 +39,7 @@ export default function TreeComponent({ node, depth = 0 }: ITreeNode) {
                   className={b('image')}
                   src={`${urlData}/${node.image}`}
                   alt={node.name}
+                  onClick={pushNewModal(node.image ? node.image : "")}
                 />
               </div>
               <span>{node.name}</span>
