@@ -1,3 +1,5 @@
+@import 'shared/style/var.scss';
+
 .cards {
   display: flex;
   flex-direction: column;
@@ -5,12 +7,20 @@
   overflow-x: hidden;
   width: 100%;
 
+  @include max-width-mobile {
+    padding-bottom: 4rem;
+  }
+
   &__top {
     margin-top: 15px;
     margin-bottom: 30px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    @include max-width-mobile {
+      justify-content: center;
+    }
   }
 
   &__wrapper {
@@ -20,6 +30,10 @@
     padding: 0 10px;
     width: 100%;
     flex-wrap: wrap;
+
+    @include max-width-mobile {
+      justify-content: space-around;
+    }
   }
 
   &__pagination-bottom {

@@ -1,8 +1,14 @@
+@import 'shared/style/var.scss';
+
 .sort-cards {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
+
+  @include max-width-mobile {
+    flex-direction: column;
+  }
 
   &__item {
     margin-left: 5px;

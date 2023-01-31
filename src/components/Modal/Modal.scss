@@ -16,9 +16,6 @@
     padding: 2.4rem 0.8rem 14rem;
     width: 100vw;
     transform: translateZ(0);
-    // @include min-width-pre-full-hd-desktop {
-    //   padding: 2rem 0 0;
-    // }
   }
 
   &__wrapper {
@@ -32,7 +29,6 @@
   &__content-container {
     border-radius: 16px;
     overflow: hidden;
-    // display: flex;
     position: relative;
   }
 
@@ -57,10 +53,5 @@
   &__close-img {
     width: 60%;
     height: 60%;
-  }
-
-  &__save-block {
-    width: 90px;
-    height: 25px;
   }
 }

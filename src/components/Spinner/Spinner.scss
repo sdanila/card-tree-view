@@ -13,45 +13,4 @@
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   display: flex;
-  
-  // &__text {
-  //   margin-top: 1rem;
-  //   text-align: center;
-  // }
-  // &__icon {
-  //   width: 5rem;
-  //   height: 5rem;
-  //   animation: rotate-icon 2s ease-in infinite;
-  // }
-  // &_size_small &__icon {
-  //   width: 6rem;
-  //   height: 6rem;
-  //   margin: 0 auto;
-  //   font-size: 0.625rem;
-  //   position: relative;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   transition: 0.2s;
-  // }
-
-  // &_size_big &__icon {
-  //   width: 10rem;
-  //   height: 10rem;
-  //   font-size: 0.625rem;
-  //   position: relative;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   transition: 0.2s;
-  // }
-}
-
-@keyframes rotate-icon {
-  from {
-    transform: rotate3d(0, 0, 0, 0);
-  }
-  to {
-    transform: rotate3d(0, 1, 0, 360deg);
-  }
 }
